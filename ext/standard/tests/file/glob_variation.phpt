@@ -21,10 +21,9 @@ mkdir("$file_path/glob_variation");
 mkdir("$file_path/glob_variation/wonder");
 
 // temp files created
-$fp = fopen("$file_path/glob_variation/wonder12345", "w");
-fclose($fp);
-$fp = fopen("$file_path/glob_variation/wonder;123456", "w");
-fclose($fp);
+touch("$file_path/glob_variation/wonder12345");
+touch("$file_path/glob_variation/wonder;123456");
+touch("$file_path/glob_variation/.wonder123456");
 
 $patterns = array (
   "$file_path/glob_variation/*der*",
@@ -51,6 +50,7 @@ foreach($patterns as $pattern) {
   var_dump( glob($pattern, GLOB_NOCHECK) );
   var_dump( glob($pattern, GLOB_NOESCAPE) );
   var_dump( glob($pattern, GLOB_ERR) );
+  var_dump( glob($pattern, GLOB_PERIOD) );
   $counter++;
 }
 
@@ -60,6 +60,7 @@ var_dump( glob("$file_path/glob_variation/*{5}", GLOB_BRACE) );
 // delete temp files and dir
 unlink("$file_path/glob_variation/wonder12345");
 unlink("$file_path/glob_variation/wonder;123456");
+unlink("$file_path/glob_variation/.wonder123456");
 rmdir("$file_path/glob_variation/wonder");
 rmdir("$file_path/glob_variation");
 
@@ -137,6 +138,16 @@ array(3) {
   [2]=>
   string(%d) "%s/glob_variation/wonder;123456"
 }
+array(4) {
+  [0]=>
+  string(99) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/.wonder123456"
+  [1]=>
+  string(92) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder"
+  [2]=>
+  string(97) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder12345"
+  [3]=>
+  string(99) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder;123456"
+}
 
 -- Iteration 2 --
 array(3) {
@@ -187,6 +198,14 @@ array(3) {
   [2]=>
   string(%d) "%s/glob_variation/wonder;123456"
 }
+array(3) {
+  [0]=>
+  string(92) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder"
+  [1]=>
+  string(97) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder12345"
+  [2]=>
+  string(99) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder;123456"
+}
 
 -- Iteration 3 --
 array(2) {
@@ -225,6 +244,12 @@ array(2) {
   [1]=>
   string(%d) "%s/glob_variation/wonder;123456"
 }
+array(2) {
+  [0]=>
+  string(97) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder12345"
+  [1]=>
+  string(99) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder;123456"
+}
 
 -- Iteration 4 --
 array(0) {
@@ -236,6 +261,8 @@ array(0) {
 array(1) {
   [0]=>
   string(%d) "%s/glob_variation/*der5"
+}
+array(0) {
 }
 array(0) {
 }
@@ -256,6 +283,10 @@ array(1) {
 array(0) {
 }
 array(0) {
+}
+array(1) {
+  [0]=>
+  string(99) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/.wonder123456"
 }
 
 -- Iteration 6 --
@@ -307,6 +338,16 @@ array(3) {
   [2]=>
   string(%d) "%s/glob_variation/wonder;123456"
 }
+array(4) {
+  [0]=>
+  string(99) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/.wonder123456"
+  [1]=>
+  string(92) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder"
+  [2]=>
+  string(97) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder12345"
+  [3]=>
+  string(99) "/home/hartmut/projects/php/dev/glob_period.git/ext/standard/tests/file/glob_variation/wonder;123456"
+}
 
 -- Iteration 7 --
 array(0) {
@@ -318,6 +359,8 @@ array(0) {
 array(1) {
   [0]=>
   string(%d) "%s/glob_variation/++onder*"
+}
+array(0) {
 }
 array(0) {
 }
@@ -339,6 +382,8 @@ array(0) {
 }
 array(0) {
 }
+array(0) {
+}
 
 -- Iteration 9 --
 array(0) {
@@ -350,6 +395,8 @@ array(0) {
 array(1) {
   [0]=>
   string(%d) "$file_path/glob_variation/wonder5"
+}
+array(0) {
 }
 array(0) {
 }
@@ -371,6 +418,8 @@ array(0) {
 }
 array(0) {
 }
+array(0) {
+}
 
 -- Iteration 11 --
 array(0) {
@@ -387,6 +436,8 @@ array(0) {
 }
 array(0) {
 }
+array(0) {
+}
 
 -- Iteration 12 --
 array(0) {
@@ -398,6 +449,8 @@ array(0) {
 array(1) {
   [0]=>
   string(%d) "1"
+}
+array(0) {
 }
 array(0) {
 }
